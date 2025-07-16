@@ -267,17 +267,70 @@
                                     <p>Join our newsletter and be the first to know about:</p>
                                 </div>
                                 <!-- Footer Newsletter Title End -->
-                                
+                            
                                 <!-- Newsletter Form Start -->
                                 <div class="newsletter-form">
-                                    <form id="newslettersForm" action="#" method="POST">
+                                    <form id="newslettersForm">
                                         <div class="form-group">
-                                            <input type="email" name="mail" class="form-control" id="mail" placeholder="Email Address *" required>
+                                            <input type="email" name="mail" class="form-control" id="mail" placeholder="Dirección de Email *" required>
                                             <button type="submit" class="newsletter-btn"><i class="fa-regular fa-paper-plane"></i></button>
                                         </div>
                                     </form>
                                 </div>
                                 <!-- Newsletter Form End -->
+                                
+                                <!-- Newsletter Popup -->
+                                <div class="modal fade" id="newsletter-popup" tabindex="-1" role="dialog" aria-labelledby="newsletterPopupTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header border-0">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body text-center py-4">
+                                                <img src="images/icon-sparkle.svg" alt="" style="width: 60px; margin-bottom: 20px;">
+                                                <h3 class="modal-title" id="newsletterPopupTitle">¡Gracias por suscribirte!</h3>
+                                                <p class="mt-3">Tu correo electrónico ha sido registrado. Pronto recibirás nuestras novedades sobre conservación y educación ambiental.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <style>
+                                    #newsletter-popup .modal-content {
+                                        background: #fff;
+                                        border-radius: 15px;
+                                        border: none;
+                                        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                                    }
+                                    #newsletter-popup .close {
+                                        position: absolute;
+                                        right: 15px;
+                                        top: 15px;
+                                        z-index: 1;
+                                        font-size: 24px;
+                                        font-weight: normal;
+                                        color: #666;
+                                        opacity: 1;
+                                        transition: all 0.3s ease;
+                                    }
+                                    #newsletter-popup .close:hover {
+                                        color: #000;
+                                    }
+                                    #newsletter-popup .modal-title {
+                                        color: #333;
+                                        font-weight: 600;
+                                    }
+                                    #newsletter-popup p {
+                                        color: #666;
+                                        line-height: 1.6;
+                                        padding: 0 20px;
+                                    }
+                                    #newsletter-popup .modal-dialog {
+                                        max-width: 500px;
+                                    }
+                                </style>
                                 
                                 <!-- Footer Contact Item Start -->
                                 <div class="footer-contact-item">
@@ -359,5 +412,27 @@
     <script src="js/wow.min.js"></script>
     <!-- Main Custom js file -->
     <script src="js/function.js"></script>
+       <!-- Newsletter Form Handler -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('newslettersForm');
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const email = document.getElementById('mail').value;
+                    
+                    if (email) {
+                        const popup = $('#newsletter-popup');
+                        popup.modal('show');
+                        form.reset();
+                        
+                        setTimeout(function() {
+                            popup.modal('hide');
+                        }, 3000);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
