@@ -55,7 +55,7 @@
 	<div class="preloader">
 		<div class="loading-container">
 			<div class="loading"></div>
-			<div id="loading-icon"><img src="images/loader.svg" alt=""></div>
+			<div id="loading-icon"><img src="images/favicon.png" alt=""></div>
 		</div>
 	</div>
 	<!-- Preloader End -->
@@ -634,8 +634,54 @@
     <!-- Contact Form Handler -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // GCLID Handler
+            function getGclidFromUrl() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('gclid') || '';
+            }
+
+            // Store GCLID in localStorage with timestamp
+            function storeGclid() {
+                const gclid = getGclidFromUrl();
+                if (gclid) {
+                    const gclidData = {
+                        value: gclid,
+                        timestamp: new Date().getTime()
+                    };
+                    localStorage.setItem('gclid_data', JSON.stringify(gclidData));
+                }
+            }
+
+            // Get stored GCLID if it's less than 30 days old
+            function getStoredGclid() {
+                const gclidData = localStorage.getItem('gclid_data');
+                if (gclidData) {
+                    const data = JSON.parse(gclidData);
+                    const now = new Date().getTime();
+                    const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+                    
+                    if (now - data.timestamp < thirtyDaysInMs) {
+                        return data.value;
+                    } else {
+                        localStorage.removeItem('gclid_data');
+                    }
+                }
+                return '';
+            }
+
+            // Store GCLID on page load if present
+            storeGclid();
+
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
+                // Add hidden GCLID input to form
+                const gclidInput = document.createElement('input');
+                gclidInput.type = 'hidden';
+                gclidInput.name = 'gclid';
+                gclidInput.id = 'gclid';
+                gclidInput.value = getGclidFromUrl() || getStoredGclid();
+                contactForm.appendChild(gclidInput);
+
                 // Function to validate email format
                 function isValidEmail(email) {
                     const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -678,10 +724,22 @@
 
                 // Handle form submission
                 contactForm.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Prevent form submission
-                    event.stopPropagation(); // Stop event bubbling
+                    event.preventDefault();
+                    event.stopPropagation();
                     
                     if (validateForm()) {
+                        // Get form data including GCLID
+                        const formData = {
+                            firstName: document.getElementById('fname').value,
+                            lastName: document.getElementById('lname').value,
+                            email: document.getElementById('email').value,
+                            phone: document.getElementById('phone').value,
+                            message: document.getElementById('message').value,
+                            gclid: document.getElementById('gclid').value
+                        };
+
+                        console.log('Form submission with GCLID:', formData);
+
                         // Show success popup
                         const popup = $('#contact-success-popup');
                         popup.modal('show');
@@ -693,13 +751,16 @@
                             input.classList.remove('is-invalid');
                         });
                         
+                        // Update GCLID input after form reset
+                        document.getElementById('gclid').value = getGclidFromUrl() || getStoredGclid();
+                        
                         // Auto close popup after 3 seconds
                         setTimeout(function() {
                             popup.modal('hide');
                         }, 3000);
                     }
                     
-                    return false; // Prevent any default form handling
+                    return false;
                 });
 
                 // Real-time validation on input
