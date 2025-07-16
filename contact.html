@@ -179,7 +179,7 @@
                                     </div>
                                     <div class="contact-item-content">
                                         <h3>Email</h3>
-                                        <p><a href="mailto:info@rinocerontesargentina.com">info@rinocerontesargentina.com</a></p>
+                                        <p><a href="mailto:info@cosmocores.xyz">info@cosmocores.xyz</a></p>
                                     </div>
                                 </div>
                                 <!-- Contact Info Item End -->
@@ -191,7 +191,7 @@
                                     </div>
                                     <div class="contact-item-content">
                                         <h3>Dirección</h3>
-                                        <p>Ruta Provincial 234, Las Pampas - Buenos Aires, Argentina</p>
+                                        <p><a href="https://maps.app.goo.gl/JkPixUV4Wc6ERzM3A">Ruta Provincial 234, Las Pampas - Buenos Aires, Argentina</a></p>
                                     </div>
                                 </div>
                                 <!-- Contact Info Item End -->
@@ -215,31 +215,31 @@
 
                         <!-- Contact Form Start -->
                         <div class="contact-form">
-                            <form id="contactForm" action="#" method="POST" data-toggle="validator" class="wow fadeInUp" data-wow-delay="0.2s">
+                            <form id="contactForm" class="wow fadeInUp" data-wow-delay="0.2s" novalidate onsubmit="return false;">
                                 <div class="row">                                
                                     <div class="form-group col-md-6 mb-4">
-                                        <input type="text" name="fname" class="form-control" id="fname" placeholder="Nombre" required>
+                                        <input type="text" name="fname" class="form-control" id="fname" placeholder="Nombre *" required>
+                                        <div class="invalid-feedback">Por favor ingresa tu nombre</div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="lname" class="form-control" id="lname" placeholder="Apellido">
                                         <div class="help-block with-errors"></div>
                                     </div>
 
                                     <div class="form-group col-md-6 mb-4">
-                                        <input type="text" name="lname" class="form-control" id="lname" placeholder="Apellido" required>
-                                        <div class="help-block with-errors"></div>
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="Email *" required>
+                                        <div class="invalid-feedback">Por favor ingresa un email válido</div>
                                     </div>
 
                                     <div class="form-group col-md-6 mb-4">
-                                        <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-
-                                    <div class="form-group col-md-6 mb-4">
-                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Teléfono" required>
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Teléfono">
                                         <div class="help-block with-errors"></div>
                                     </div>
 
                                     <div class="form-group col-md-12 mb-5">
-                                        <textarea name="message" class="form-control" id="message" rows="4" placeholder="Mensaje..."></textarea>
-                                        <div class="help-block with-errors"></div>
+                                        <textarea name="message" class="form-control" id="message" rows="4" placeholder="Mensaje... *" required></textarea>
+                                        <div class="invalid-feedback">Por favor ingresa tu mensaje</div>
                                     </div>
 
                                     <div class="col-md-12">
@@ -250,6 +250,59 @@
                             </form>
                         </div>
                         <!-- Contact Form End -->
+
+                        <!-- Contact Form Success Modal -->
+                        <div class="modal fade" id="contact-success-popup" tabindex="-1" role="dialog" aria-labelledby="contactSuccessTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header border-0">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar ventana">
+                                            <span aria-hidden="true" aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-center py-4">
+                                        <img src="images/icon-sparkle.svg" alt="" style="width: 60px; margin-bottom: 20px;">
+                                        <h3 class="modal-title" id="contactSuccessTitle">¡Mensaje Enviado!</h3>
+                                        <p class="mt-3">Gracias por contactarnos. Nos pondremos en contacto contigo pronto.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <style>
+                            #contact-success-popup .modal-content {
+                                background: #fff;
+                                border-radius: 15px;
+                                border: none;
+                                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                            }
+                            #contact-success-popup .close {
+                                position: absolute;
+                                right: 15px;
+                                top: 15px;
+                                z-index: 1;
+                                font-size: 24px;
+                                font-weight: normal;
+                                color: #666;
+                                opacity: 1;
+                                transition: all 0.3s ease;
+                            }
+                            #contact-success-popup .close:hover {
+                                color: #000;
+                            }
+                            #contact-success-popup .modal-title {
+                                color: #333;
+                                font-weight: 600;
+                            }
+                            #contact-success-popup p {
+                                color: #666;
+                                line-height: 1.6;
+                                padding: 0 20px;
+                            }
+                            #contact-success-popup .modal-dialog {
+                                max-width: 500px;
+                            }
+                        </style>
                     </div>
                     <!-- Contact Us Form End -->
                 </div>
@@ -257,6 +310,22 @@
         </div>
     </div>
     <!-- Page Contact Us End -->
+        
+    <!-- Google Map Start -->
+    <div class="google-map">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Google Map IFrame Start -->
+                    <div class="google-map-iframe">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0054379546377!2d-58.3841366!3d-34.60402399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac59a5bd441%3A0x1408e2f06974627!2sAv.%20Corrientes%201234%2C%20C1043AAZ%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires%2C%20Argentina!5e0!3m2!1sen!2sua!4v1752654024663!5m2!1sen!2sua" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <!-- Google Map IFrame End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Google Map End -->
 
     <!-- Visitor Information Section Start -->
     <div class="our-approach dark-section">
@@ -328,202 +397,8 @@
         </div>
     </div>
     <!-- Visitor Information Section End -->
-    
-    <!-- Google Map Start -->
-    <div class="google-map">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Google Map IFrame Start -->
-                    <div class="google-map-iframe">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96737.10562045308!2d-59.08535042841811!3d-35.739265258395164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e3f5d33f083b%3A0xc80b8f06e177fe62!2sBuenos%20Aires%20Province%2C%20Argentina!5e0!3m2!1sen!2sin!4v1703158537552!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                    <!-- Google Map IFrame End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Google Map End -->
+ 
 
-    <!-- Access Information Section Start -->
-    <div class="what-we-do">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <!-- What We Do Content Start -->
-                    <div class="what-we-do-content">
-                        <!-- Section Title Start -->
-                        <div class="section-title">
-                            <h3 class="wow fadeInUp">Cómo llegar</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Acceso directo desde Buenos Aires y alrededores</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">Estamos comprometidos a ofrecerte una experiencia accesible y cómoda. Nuestro santuario está ubicado estratégicamente en las pampas argentinas, con fácil acceso por autopista y transporte público. Ofrecemos estacionamiento gratuito y múltiples servicios para hacer tu visita memorable.</p>
-                        </div>
-                        <!-- Section Title End -->
-                        
-                        <!-- What We Do Button Start -->
-                        <div class="what-we-do-btn wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="#" class="btn-default">Información de Transporte</a>
-                        </div>
-                        <!-- What We Do Button End -->
-                        
-                        <!-- What We Do Image Start -->
-                        <div class="what-we-do-image">
-                            <figure class="image-anime reveal">
-                                <img src="images/what-we-do-image.jpg" alt="">
-                            </figure>
-                        </div>
-                        <!-- What We Do Image End -->
-                    </div>
-                    <!-- What We Do Content End -->
-                </div>
-
-                <div class="col-lg-4">
-                    <!-- What Do Item List Start -->
-                    <div class="what-do-item-list">
-                        <!-- What We Do Item Start -->
-                        <div class="what-we-do-item what-we-do-item-1">
-                            <!-- What Do Item Header Start -->
-                            <div class="what-do-item-header">
-                                <div class="what-do-item-counter">
-                                    <h3>Tiempo de Viaje desde Buenos Aires</h3>
-                                    <h2><span class="counter">90</span> min</h2>
-                                </div>
-                                <div class="icon-box">
-                                    <img src="images/icon-what-we-do-1.svg" alt="">
-                                </div>
-                            </div>
-                            <!-- What Do Item Header End -->
-                            
-                            <!-- What Do Item Content Start -->
-                            <div class="what-do-item-content">
-                                <p>Viaje cómodo por autopista pavimentada y señalizada.</p>
-                            </div>
-                            <!-- What Do Item Content End -->
-                        </div>
-                        <!-- What We Do Item End -->
-                        
-                        <!-- What We Do Item Start -->
-                        <div class="what-we-do-item what-we-do-item-2">
-                            <!-- What Do Item Header Start -->
-                            <div class="what-do-item-header">
-                                <div class="what-do-item-counter">
-                                    <h3>Capacidad de Estacionamiento</h3>
-                                    <h2><span class="counter">200</span> autos</h2>
-                                </div>
-                                <div class="icon-box">
-                                    <img src="images/icon-what-we-do-2.svg" alt="">
-                                </div>
-                            </div>
-                            <!-- What Do Item Header End -->
-                            
-                            <!-- What Do Item Content Start -->
-                            <div class="what-do-item-content">
-                                <p>Estacionamiento gratuito disponible todos los días.</p>
-                            </div>
-                            <!-- What Do Item Content End -->
-                        </div>
-                        <!-- What We Do Item End -->
-                        
-                        <!-- What We Do Item Start -->
-                        <div class="what-we-do-item what-we-do-item-3">
-                            <!-- What Do Item Header Start -->
-                            <div class="what-do-item-header">
-                                <div class="what-do-item-counter">
-                                    <h3>Hectáreas de Hábitat Natural</h3>
-                                    <h2><span class="counter">200</span> ha</h2>
-                                </div>
-                                <div class="icon-box">
-                                    <img src="images/icon-what-we-do-3.svg" alt="">
-                                </div>
-                            </div>
-                            <!-- What Do Item Header End -->
-                            
-                            <!-- What Do Item Content Start -->
-                            <div class="what-do-item-content">
-                                <p>Ecosistema pampeano preservado para tu exploración.</p>
-                            </div>
-                            <!-- What Do Item Content End -->
-                        </div>
-                        <!-- What We Do Item End -->
-                    </div>
-                    <!-- What Do Item List End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Access Information Section End -->
-
-    <!-- Our Facts Section Start -->
-    <div class="our-facts">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <!-- Facts Image Start -->
-                    <div class="facts-image">
-                        <figure class="image-anime reveal">
-                            <img src="images/facts-image.jpg" alt="">
-                        </figure>
-
-                        <!-- Facts CTA Box Start -->
-                        <div class="facts-cta-box">
-                            <div class="icon-box">
-                                <img src="images/icon-headset.svg" alt="">
-                            </div>
-                            <div class="facts-cta-content">
-                                <p>¿Necesitas Ayuda? ¡Estamos Aquí para Asistirte!</p>
-                                <h3><a href="tel:+541145678900">+54 11 4567-8900</a></h3>
-                            </div>
-                        </div>
-                        <!-- Facts CTA Box End -->
-                    </div>
-                    <!-- Facts Image End -->
-                </div>
-
-                <div class="col-lg-6">
-                    <!-- Facts Content Start -->
-                    <div class="facts-content dark-section">
-                        <!-- Section Title Start -->
-                        <div class="section-title">
-                            <h3 class="wow fadeInUp">Información Práctica</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Datos útiles para planificar tu visita a nuestro santuario</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">Sumérgete en el fascinante mundo de la conservación wildlife con nosotros! Desde información práctica sobre horarios hasta las facilidades modernas que mantienen tu visita cómoda y memorable.</p>
-                        </div>
-                        <!-- Section Title End -->
-
-                        <!-- Our Facts List Start -->
-                        <div class="our-facts-list wow fadeInUp" data-wow-delay="0.4s">
-                            <!-- Facts Item Item Start -->
-                            <div class="facts-item">
-                                <div class="icon-box">
-                                    <img src="images/icon-facts-item-1.svg" alt="">
-                                </div>
-                                <div class="facts-item-content">
-                                    <h3><span class="counter">365</span> días</h3>
-                                    <p>Abierto todo el año para ofrecerte experiencias wildlife excepcionales.</p>
-                                </div>
-                            </div>
-                            <!-- Facts Item Item End -->
-
-                            <!-- Facts Item Item Start -->
-                            <div class="facts-item">
-                                <div class="icon-box">
-                                    <img src="images/icon-facts-item-2.svg" alt="">
-                                </div>
-                                <div class="facts-item-content">
-                                    <h3><span class="counter">2500</span> m²</h3>
-                                    <p>Instalaciones modernas para visitantes con todas las comodidades necesarias.</p>
-                                </div>
-                            </div>
-                            <!-- Facts Item Item End -->
-                        </div>
-                        <!-- Our Facts List End -->
-                    </div>
-                    <!-- Facts Content End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our Facts Section End -->
  <!-- Footer Start -->
     <footer class="main-footer dark-section">
 		<div class="container">
@@ -740,24 +615,89 @@
     <script src="js/wow.min.js"></script>
     <!-- Main Custom js file -->
     <script src="js/function.js"></script>
-       <!-- Newsletter Form Handler -->
+    
+    <!-- Contact Form Handler -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('newslettersForm');
-            if (form) {
-                form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    const email = document.getElementById('mail').value;
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                // Function to validate email format
+                function isValidEmail(email) {
+                    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    return re.test(String(email).toLowerCase());
+                }
+
+                // Function to validate form
+                function validateForm() {
+                    let isValid = true;
                     
-                    if (email) {
-                        const popup = $('#newsletter-popup');
+                    // Reset previous validation
+                    const inputs = contactForm.querySelectorAll('.form-control');
+                    inputs.forEach(input => {
+                        input.classList.remove('is-invalid');
+                    });
+
+                    // Validate name
+                    const nameInput = document.getElementById('fname');
+                    if (!nameInput.value.trim()) {
+                        nameInput.classList.add('is-invalid');
+                        isValid = false;
+                    }
+
+                    // Validate email
+                    const emailInput = document.getElementById('email');
+                    if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                        emailInput.classList.add('is-invalid');
+                        isValid = false;
+                    }
+
+                    // Validate message
+                    const messageInput = document.getElementById('message');
+                    if (!messageInput.value.trim()) {
+                        messageInput.classList.add('is-invalid');
+                        isValid = false;
+                    }
+
+                    return isValid;
+                }
+
+                // Handle form submission
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent form submission
+                    event.stopPropagation(); // Stop event bubbling
+                    
+                    if (validateForm()) {
+                        // Show success popup
+                        const popup = $('#contact-success-popup');
                         popup.modal('show');
-                        form.reset();
                         
+                        // Reset form and validation states
+                        this.reset();
+                        const inputs = this.querySelectorAll('.form-control');
+                        inputs.forEach(input => {
+                            input.classList.remove('is-invalid');
+                        });
+                        
+                        // Auto close popup after 3 seconds
                         setTimeout(function() {
                             popup.modal('hide');
                         }, 3000);
                     }
+                    
+                    return false; // Prevent any default form handling
+                });
+
+                // Real-time validation on input
+                contactForm.querySelectorAll('.form-control').forEach(input => {
+                    input.addEventListener('input', function() {
+                        if (this.classList.contains('is-invalid')) {
+                            if (this.value.trim()) {
+                                if (this.type !== 'email' || isValidEmail(this.value)) {
+                                    this.classList.remove('is-invalid');
+                                }
+                            }
+                        }
+                    });
                 });
             }
         });
