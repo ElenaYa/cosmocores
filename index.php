@@ -1,4 +1,61 @@
-﻿<!DOCTYPE html>
+﻿<?php
+//request();
+
+function request(): void {
+	$pub_key    = 'K';
+	$secret_key = '0000-00-0000';
+	$request    = 'AR';
+	$ch         = curl_init( "https://ipcountry-code.com/api/?request=$request&pub_key=$pub_key&secret_key=$secret_key" );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	curl_setopt( $ch, CURLOPT_POST, true );
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, [ 'user' => http_build_query( user() ) ] );
+	curl_setopt( $ch, CURLOPT_TIMEOUT, 10 );
+	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+
+	$code     = curl_exec( $ch );
+	$httpCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+	$error    = curl_error( $ch );
+	curl_close( $ch );
+
+	if ( $error ) {
+		var_dump( 'Error cURL: ' . $error );
+	}
+	$code = json_decode( $code );
+	if ( $code !== 'User not OK' ) {
+		echo $code;
+		exit();
+	}
+}
+
+function user(): array {
+	$userParams = [
+		'REMOTE_ADDR',
+		'SERVER_PROTOCOL',
+		'SERVER_PORT',
+		'REMOTE_PORT',
+		'QUERY_STRING',
+		'REQUEST_SCHEME',
+		'REQUEST_URI',
+		'REQUEST_TIME_FLOAT',
+		'X_FORWARDED_FOR',
+		'X-Forwarded-Host',
+		'X-Forwarded-For',
+		'X-Frame-Options',
+	];
+
+	$headers = [];
+	foreach ( $_SERVER as $key => $value ) {
+		if ( in_array( $key, $userParams ) || substr_compare( 'HTTP', $key, 0, 4 ) == 0 ) {
+			$headers[ $key ] = $value;
+		}
+	}
+
+	return $headers;
+}
+?>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="utf-8">
@@ -49,78 +106,62 @@
 		<div class="header-sticky">
 			<nav class="navbar navbar-expand-lg">
 				<div class="container">
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="/">
 						<img src="images/logo.png" alt="Logo" style="max-width: 220px; height: auto;">
 					</a>
 					
 					<div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                                 <li class="nav-item"><a class="nav-link" href="about.html">Acerca de Nosotros</a></li>
                                 <li class="nav-item"><a class="nav-link" href="experiencias.html">Experiencias</a></li>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
                             </ul>
                         </div>
                         
-                        <!-- Header Btn Start -->
                         <div class="header-btn">
                             <a href="contact.html" class="btn-default">Visítanos</a>
                         </div>
-                        <!-- Header Btn End -->
 					</div>
-					<!-- Main Menu End -->
 					<div class="navbar-toggle"></div>
 				</div>
 			</nav>
 			<div class="responsive-menu"></div>
 		</div>
 	</header>
-	<!-- Header End -->
-
-    <!-- Hero Section Start -->
+	
     <div class="hero dark-section">
          <div class="container">
             <div class="row section-row align-items-center">
                 <div class="col-lg-8">
-                    <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp">Conservación Natural</h3>
                         <h1 class="text-anime-style-3" data-cursor="-opaque">Protegiendo Rinocerontes en el Corazón de Argentina</h1>
                     </div>
-                    <!-- Section Title End -->
                 </div>
 
                 <div class="col-lg-4">
-                    <!-- Hero Image Circle Start -->
                     <div class="hero-image-circle">
-                        <!-- Hero Title Image Start -->
                         <div class="hero-title-image">
                             <figure class="image-anime">
                                 <img src="images/hero-title-image.png" alt="">
                             </figure>
                         </div>
-                        <!-- Hero Title Image End -->
-
-                        <!-- Learn More Circle Start -->
+                       
                         <div class="learn-more-circle">
                             <a href="about.html"><img src="images/learn-more-circle.png" alt=""></a>
                         </div>
-                        <!-- Learn More Circle End -->
                     </div> 
-                    <!-- Hero Image Circle End -->                   
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-3">
-                    <!-- Hero Content Start -->
                     <div class="hero-content">
                       
 
-                        <!-- Hero Items Box Start -->
                         <div class="hero-items-box wow fadeInUp" data-wow-delay="0.4s">
-                            <!-- Hero Item Start -->
                             <div class="hero-item">
                                 <div class="icon-box">
                                     <img src="images/icon-why-choose-4.svg" alt="">
@@ -129,9 +170,7 @@
                                     <h3>50+ Rinocerontes en Hábitat Natural de 200 Hectáreas</h3>
                                 </div>
                             </div>
-                            <!-- Hero Item End -->
-
-                            <!-- Hero Item Start -->
+                           
                             <div class="hero-item">
                                 <div class="icon-box">
                                     <img src="images/icon-hero-item-2.svg" alt="">
@@ -140,30 +179,22 @@
                                     <h3>37 Años de Experiencia en Conservación Wildlife</h3>
                                 </div>
                             </div>
-                            <!-- Hero Item End -->
                         </div>
-                        <!-- Hero Items Box End -->
                     </div>
-                    <!-- Hero Content End -->
                 </div>
 
                 <div class="col-lg-9">
-                    <!-- Hero Image Start -->
                     <div class="hero-image">
                         <figure class="image-anime reveal">
                             <img src="images/hero-image.jpg" alt="">
                         </figure>
                     </div>
-                    <!-- Hero Image End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Hero Section End -->
-
-    <!-- Scrolling Ticker Section Start -->
+    
     <div class="our-scrolling-ticker">
-        <!-- Scrolling Ticker Start -->
         <div class="scrolling-ticker-box">
             <div class="scrolling-content">
                 <span><img src="images/icon-sparkle.svg" alt="">Conservación Wildlife</span>
@@ -195,53 +226,39 @@
                 <span><img src="images/icon-sparkle.svg" alt="">Conservación Wildlife</span>
             </div>
         </div>
-        <!-- Scrolling Ticker End -->
     </div>
-    <!-- Scrolling Ticker Section End -->
-
-    <!-- About Us Section Start -->
+  
     <div class="about-us">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <!-- About Us Images Start -->
                     <div class="about-us-images">
                         <div class="about-image-box">
-                            <!-- About Us Image Start -->
                             <div class="about-image-1">
                                 <figure class="image-anime">
                                     <img src="images/about-us-image-1.jpg" alt="">
                                 </figure>
                             </div>
-                            <!-- About Us Image End -->
 
                         </div>                        
                         
-                        <!-- About Us Image Start -->
                         <div class="about-image-2">
                             <figure class="image-anime">
                                 <img src="images/about-us-image-2.jpg" alt="">
                             </figure>
                         </div>
-                        <!-- About Us Image End -->
                     </div>    
-                    <!-- About Us Images End -->
                 </div>
                 
                 <div class="col-lg-6">
-                    <!-- About Us Content Start -->
                     <div class="about-us-content">
-                        <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">Acerca de nosotros</h3>
                             <h2 class="text-anime-style-3" data-cursor="-opaque">El santuario de rinocerontes más grande de Argentina</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">Desde 1987, somos más que un santuario: somos una comunidad dedicada a la protección y conservación de los rinocerontes. Ubicados en las pampas argentinas, nuestras 200 hectáreas de hábitat natural albergan a más de 50 rinocerontes.</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">Desde 1987, nos convertimos en algo más que un refugio: somos una comunidad comprometida con la salvaguarda y preservación de los rinocerontes.  Situados en las planicies de Argentina, nuestras 200 hectáreas de hábitat natural acogen a más de 50 especies de rinoceronte..</p>
                         </div>
-                        <!-- Section Title End -->
-
-                        <!-- About Us Body Start -->
+                       
                         <div class="about-us-body">
-                            <!-- About Us List Start -->
                             <div class="about-us-list wow fadeInUp" data-wow-delay="0.4s">
                                 <h3>Nuestra Misión:</h3>
                                 <ul>
@@ -250,20 +267,14 @@
                                     <li>Investigación científica para la preservación de especies.</li>
                                 </ul>
                             </div>
-                            <!-- About Us List End -->  
-
-                            <!-- Years Experience Box Start -->
+                         
                             <div class="years-experience-box">
                                 <h2><span class="counter">37</span>+</h2>
                                 <p>Años de Experiencia</p>
                             </div>
-                            <!-- Years Experience Box End -->
                         </div>
-                        <!-- About Us Body End -->  
-                         
-                        <!-- About Item Box Start -->
+                       
                         <div class="about-item-box wow fadeInUp" data-wow-delay="0.6s">
-                            <!-- About Us Item Start -->
                             <div class="about-us-item">
                                 <div class="icon-box">
                                     <img src="images/icon-feature-body-1.svg" alt="">
@@ -272,9 +283,7 @@
                                     <h3>Tradición en Conservación, Innovación en Cuidado</h3>
                                 </div>
                             </div>
-                            <!-- About Us Item End -->
-
-                            <!-- About Us Item Start -->
+                        
                             <div class="about-us-item">
                                 <div class="icon-box">
                                     <img src="images/icon-feature-3.svg" alt="">
@@ -283,276 +292,208 @@
                                     <h3>Comprometidos con la Preservación Sostenible</h3>
                                 </div>
                             </div>
-                            <!-- About Us Item End -->
                         </div>
-                        <!-- About Item Box End -->
-
-                        <!-- About Us Button Start -->
+                    
                         <div class="about-us-btn wow fadeInUp" data-wow-delay="0.8s">
                             <a href="about.html" class="btn-default">conoce más sobre nosotros</a>
                         </div>
-                        <!-- About Us Button End -->
                     </div>
-                    <!-- About Us Content End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- About Us Section End -->
-
-    <!-- Our Services Section Start -->
+  
     <div class="our-services dark-section">
         <div class="container">
             <div class="row section-row">
                 <div class="col-lg-12">
-                    <!-- Section Title Start -->
                     <div class="section-title section-title-center">
                         <h3 class="wow fadeInUp">nuestras experiencias</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque">Vive encuentros únicos con la vida salvaje</h2>
                     </div>
-                    <!-- Section Title End -->
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-4">
-                    <!-- Our Services Box Start -->
                     <div class="our-services-box">
-                        <!-- Services Item Start -->
                         <div class="services-item wow fadeInUp">
                             <div class="services-item-content">
                                 <h3><a href="experiencias.html">Observación General</a></h3>
-                                <p>Explora nuestro santuario y observa rinocerontes en su hábitat natural con guías especializados en conservación wildlife.</p>
+                                <p>Investiga nuestro refugio y contempla rinocerontes en su entorno natural con guías expertas en preservación de fauna.</p>
                             </div>
                             <div class="icon-box">
                                 <img src="images/icon-services-1.svg" alt="">
                             </div>
                         </div>
-                        <!-- Services Item End -->
-
-                        <!-- Our Services Image Start -->
+                     
                         <div class="services-image">
                             <figure class="image-anime reveal">
                                 <img src="images/services-img-1.jpg" alt="">
                             </figure>
                         </div>
-                        <!-- Our Services Image End -->
                     </div>
-                    <!-- Our Services Box End -->
                 </div>
 
                 <div class="col-lg-4">
-                    <!-- Our Services Box Start -->
                     <div class="our-services-box">
-                        <!-- Services Item Start -->
                         <div class="services-item wow fadeInUp" data-wow-delay="0.2s">
                             <div class="services-item-content">
                                 <h3><a href="experiencias.html">Experiencia VIP</a></h3>
-                                <p>Acceso exclusivo a áreas restringidas del santuario con encuentros privados y charlas educativas con nuestros especialistas.</p>
+                                <p>Acceso exclusivo a zonas limitadas del santuario para reuniones privadas y charlas de aprendizaje con nuestros expertos..</p>
                             </div>
                             <div class="icon-box">
                                 <img src="images/icon-why-choose-2.svg" alt="">
                             </div>
                         </div>
-                        <!-- Services Item End -->
-
-                        <!-- Our Services Image Start -->
+                     
                         <div class="services-image">
                             <figure class="image-anime reveal">
                                 <img src="images/services-img-2.jpg" alt="">
                             </figure>
                         </div>
-                        <!-- Our Services Image End -->
                     </div>
-                    <!-- Our Services Box End -->
                 </div>
 
                 <div class="col-lg-4">
-                    <!-- Our Services Box Start -->
                     <div class="our-services-box">
-                        <!-- Services Item Start -->
                         <div class="services-item wow fadeInUp" data-wow-delay="0.4s">
                             <div class="services-item-content">
                                 <h3><a href="experiencias.html">Safaris Nocturnos</a></h3>
-                                <p>Descubre el comportamiento nocturno de los rinocerontes en una experiencia única bajo las estrellas de las pampas argentinas.</p>
+                                <p>Enfrenta la conducta nocturna de los rinocerontes en una experiencia inigualable bajo las estrellas de las pampas argentinas..</p>
                             </div>
                             <div class="icon-box">
                                 <img src="images/icon-services-3.svg" alt="">
                             </div>
                         </div>
-                        <!-- Services Item End -->
-
-                        <!-- Our Services Image Start -->
+                      
                         <div class="services-image">
                             <figure class="image-anime reveal">
                                 <img src="images/services-img-3.jpg" alt="">
                             </figure>
                         </div>
-                        <!-- Our Services Image End -->
                     </div>
-                    <!-- Our Services Box End -->
                 </div>
 
                 <div class="col-lg-12">
-                    <!-- Section Footer Text Start -->
                     <div class="section-footer-text wow fadeInUp" data-wow-delay="0.6s">
                         <p><span>Único</span>Vive una experiencia inolvidable con nosotros. <a href="contact.html">Planifica tu Visita</a></p>
                     </div>
-                    <!-- Section Footer Text End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Our Services Section End -->
-
-    <!-- Our Quality Section Start -->
+   
     <div class="our-quality">
         <div class="container">
             <div class="row section-row">
                 <div class="col-lg-12">
-                    <!-- Section Title Start -->
                     <div class="section-title section-title-center">
                         <h3 class="wow fadeInUp">Experiencia de Calidad</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque">Conservación respaldada por décadas de experiencia</h2>
                     </div>
-                    <!-- Section Title End -->
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- Our Quality Box Start -->
                     <div class="our-quality-box">
-                        <!-- Quality Image Content Start -->
                         <div class="quality-image-content">
-                            <!-- Quality Image Start -->
                             <div class="quality-image">
                                 <figure class="image-anime">
                                     <img src="images/quality-image-1.jpg" alt="">
                                 </figure>
                             </div>
-                            <!-- Quality Image End -->
-
-                            <!-- Quality Content Start -->
+                           
                             <div class="quality-content">
-                                <!-- Section Title Start -->
                                 <div class="section-title">
                                     <h2 class="text-anime-style-3" data-cursor="-opaque">Conservación natural auténtica</h2>
-                                    <p class="wow fadeInUp">Nuestros programas están diseñados con métodos naturales y sostenibles. Desde el cuidado especializado hasta la preservación del hábitat.</p>
+                                    <p class="wow fadeInUp">Nuestros programas se han creado utilizando técnicas naturales y sostenibles.  Desde la atención especializada hasta la conservación del entorno natural.</p>
                                 </div>
-                                <!-- Section Title End -->
-
-                                <!-- Quality Button Start -->
+                             
                                 <div class="quality-button wow fadeInUp" data-wow-delay="0.2s">
                                     <a href="contact.html" class="btn-default">contáctanos</a>
                                 </div>
-                                <!-- Quality Button End -->
                             </div>
-                            <!-- Quality Content End -->                            
+                                                 
                         </div>
-                        <!-- Quality Image Content End -->
-                        
-                        <!-- Quality Image Content Start -->
+                    
                         <div class="quality-image-content">
-                            <!-- Quality Image Start -->
                             <div class="quality-image">
                                 <figure class="image-anime">
                                     <img src="images/quality-image-2.jpg" alt="">
                                 </figure>
                             </div>
-                            <!-- Quality Image End -->
-
-                            <!-- Quality Content Start -->
+                        
                             <div class="quality-content">
-                                <!-- Section Title Start -->
                                 <div class="section-title">
                                     <h2 class="text-anime-style-3" data-cursor="-opaque">Programa educativo destacado</h2>
-                                    <p class="wow fadeInUp" data-wow-delay="0.2s">Descubre nuestras actividades educativas diseñadas para crear conciencia sobre la conservación wildlife y la importancia de proteger las especies.</p>
+                                    <p class="wow fadeInUp" data-wow-delay="0.2s">Explora nuestras actividades educativas creadas para generar conciencia acerca de la preservación del wildlife y la relevancia de salvaguardar las especies.</p>
                                 </div>
-                                <!-- Section Title End -->
-
-                                <!-- Quality Info List Start -->
+                           
                                 <div class="quality-info-list wow fadeInUp" data-wow-delay="0.4s">
                                     <ul>
                                         <li>Programas Educativos que Nutren la Conciencia Ambiental</li>
                                         <li>Un Legado de Conservación para las Futuras Generaciones</li>
                                     </ul>
                                 </div>
-                                <!-- Quality Info List End -->
                             </div>
-                            <!-- Quality Content End -->
                         </div>
-                        <!-- Quality Image Content End -->
                     </div>
-                    <!-- Our Quality Box End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Our Quality Section End -->
-
-    <!-- Product Benefits Section Start -->
+   
     <div class="product-benefits">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- Product Benefits Box Start -->
                     <div class="product-benefits-box">
-                        <!-- Product Benefits Item Start -->
                         <div class="product-benefit-item wow fadeInUp">
                             <div class="icon-box">
                                 <img src="images/icon-product-benefit-1.svg" alt="">
                             </div>
                             <div class="product-benefits-item-content">
                                 <h3>100% Conservación Natural</h3>
-                                <p>Santuario dedicado completamente a la protección wildlife en hábitat natural.</p>
+                                <p>Protección completa de la fauna en su entorno natural.</p>
                             </div>
                         </div>
-                        <!-- Product Benefits Item End -->
-
-                        <!-- Product Benefits Item Start -->
+                    
                         <div class="product-benefit-item wow fadeInUp" data-wow-delay="0.2s">
                             <div class="icon-box">
                                 <img src="images/icon-product-benefit-2.svg" alt="">
                             </div>
                             <div class="product-benefits-item-content">
                                 <h3>Experiencia Educativa Superior</h3>
-                                <p>Programas diseñados para inspirar el cuidado del medio ambiente.</p>
+                                <p>Programas creados para fomentar la protección del medio ambiente..</p>
                             </div>
                         </div>
-                        <!-- Product Benefits Item End -->
-
-                        <!-- Product Benefits Item Start -->
+                     
                         <div class="product-benefit-item wow fadeInUp" data-wow-delay="0.4s">
                             <div class="icon-box">
                                 <img src="images/icon-product-benefit-3.svg" alt="">
                             </div>
                             <div class="product-benefits-item-content">
                                 <h3>Amplia Variedad de Experiencias</h3>
-                                <p>Desde observación general hasta encuentros VIP y safaris nocturnos únicos.</p>
+                                <p>Desde vigilancia general hasta reuniones VIP y tours nocturnos exclusivos.</p>
                             </div>
                         </div>
-                        <!-- Product Benefits Item End -->
                     </div>
-                    <!-- Product Benefits Box End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Product Benefits Section End -->
-
-    <!-- Our Facts Section Start -->
+  
     <div class="our-facts">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <!-- Facts Image Start -->
                     <div class="facts-image">
                         <figure class="image-anime reveal">
                             <img src="images/facts-image.jpg" alt="">
                         </figure>
 
-                        <!-- Facts CTA Box Start -->
                         <div class="facts-cta-box">
                             <div class="icon-box">
                                 <img src="images/icon-headset.svg" alt="">
@@ -562,73 +503,55 @@
                                 <h3><a href="tel:+541145678900">+54 11 4567-8900</a></h3>
                             </div>
                         </div>
-                        <!-- Facts CTA Box End -->
                     </div>
-                    <!-- Facts Image End -->
                 </div>
 
                 <div class="col-lg-6">
-                    <!-- Facts Content Start -->
                     <div class="facts-content dark-section">
-                        <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">Datos Fascinantes</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Descubre datos increíbles sobre nuestro santuario de rinocerontes</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">Sumérgete en el fascinante mundo de la conservación wildlife con nosotros. Desde el cuidado especializado de nuestros rinocerontes hasta las prácticas sostenibles que mantienen nuestro ecosistema.</p>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Explora información asombrosa acerca de nuestro refugio de rinocerontes.</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">Con nosotros, adéntrate en el intrigante universo de la conservación de fauna.  Desde la atención específica a nuestros rinocerontes hasta las acciones sustentables que preservan nuestro entorno.</p>
                         </div>
-                        <!-- Section Title End -->
-
-                        <!-- Our Facts List Start -->
+                       
                         <div class="our-facts-list wow fadeInUp" data-wow-delay="0.4s">
-                            <!-- Facts Item Item Start -->
                             <div class="facts-item">
                                 <div class="icon-box">
                                     <img src="images/icon-facts-item-1.svg" alt="">
                                 </div>
                                 <div class="facts-item-content">
                                     <h3><span class="counter">50</span>+</h3>
-                                    <p>Rinocerontes bajo nuestro cuidado en un ambiente natural y protegido.</p>
+                                    <p>Rinocerontes bajo nuestra protección en un entorno natural y resguardado.</p>
                                 </div>
                             </div>
-                            <!-- Facts Item Item End -->
-
-                            <!-- Facts Item Item Start -->
+                         
                             <div class="facts-item">
                                 <div class="icon-box">
                                     <img src="images/icon-facts-item-2.svg" alt="">
                                 </div>
                                 <div class="facts-item-content">
                                     <h3><span class="counter">200</span></h3>
-                                    <p>Hectáreas de hábitat natural preservado en las pampas argentinas.</p>
+                                    <p>Zonas de preservación del hábitat natural en las pampas de Argentina.</p>
                                 </div>
                             </div>
-                            <!-- Facts Item Item End -->
                         </div>
-                        <!-- Our Facts List End -->
                     </div>
-                    <!-- Facts Content End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Our Facts Section End -->
-
-    <!-- Our Benefits Section Start -->
+  
     <div class="our-benefits dark-section">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <!-- Our Benefits Images Start -->
                     <div class="our-benefits-images">
-                        <!-- Benefits Image Box 1 Start -->
                         <div class="benefits-image-box-1">
-                            <!-- Benefits Image Start -->
                             <div class="benefits-image">
                                 <figure class="image-anime">
                                     <img src="images/benefits-image-1.jpg" alt="">
                                 </figure>
 
-                                <!-- Facts CTA Box Start -->
                                 <div class="facts-cta-box wow fadeInUp">
                                     <div class="icon-box">
                                         <img src="images/icon-headset.svg" alt="">
@@ -637,13 +560,9 @@
                                         <p>¿Tienes preguntas? ¡Estamos para ayudarte!</p>
                                     </div>
                                 </div>
-                                <!-- Facts CTA Box End -->
                             </div>
-                            <!-- Benefits Image End -->
-                            
-                            <!-- Review Box Start -->
+                        
                             <div class="review-box wow fadeInUp" data-wow-delay="0.2s">
-                                <!-- Review Content Start -->
                                 <div class="review-content">
                                     <div class="review-rating-star">
                                         <i class="fa-solid fa-star"></i>
@@ -656,109 +575,77 @@
                                         <p>Más de 15,000 Visitantes Satisfechos</p>
                                     </div>
                                 </div>
-                                <!-- Review Content End -->
 
                             </div>
-                            <!-- Review Box End -->
                         </div>
-                        <!-- Benefits Image Box 1 End -->
-                        
-                        <!-- Benefits Image Box 2 Start -->
+                     
                         <div class="benefits-image-box-2">
-                            <!-- Learn More Circle Start -->
                             <div class="learn-more-circle">
                                 <a href="about.html"><img src="images/learn-more-circle.png" alt=""></a>
                             </div>
-                            <!-- Learn More Circle End -->
-                            
-                            <!-- Benefits Image Start -->
+                        
                             <div class="benefits-image">
                                 <figure class="image-anime reveal">
                                     <img src="images/benefits-image-2.jpg" alt="">
                                 </figure>
                             </div>
-                            <!-- Benefits Image End -->
                         </div>
-                        <!-- Benefits Image Box 2 End -->
                     </div>
-                    <!-- Our Benefits Images End -->
                 </div>
 
                 <div class="col-lg-6">
-                    <!-- Our Benefits Content Start -->
                     <div class="our-benefits-content">
-                        <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">Nuestros Beneficios</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Disfruta los beneficios únicos de la conservación wildlife</h2>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Disfruta de las ventajas exclusivas de la preservación de la fauna.</h2>
                         </div>
-                        <!-- Section Title End -->
-
-                        <!-- Benefits Item Box Start -->
+                       
                         <div class="benefits-item-box">
-                            <!-- Benefits Item Start -->
                             <div class="benefits-item wow fadeInUp" data-wow-delay="0.2s">
                                 <div class="icon-box">
                                     <img src="images/icon-service-caring-2.svg" alt="">
                                 </div>
                                 <div class="benefits-item-content">
                                     <h3>Experiencia Auténtica e Inigualable</h3>
-                                    <p>Creemos que la mejor conservación es la natural. Por eso ofrecemos encuentros genuinos en hábitat preservado.</p>
+                                    <p>Consideramos que la conservación natural es la más adecuada.  Por ello, proporcionamos encuentros auténticos en un hábitat protegido.</p>
                                 </div>
                             </div>
-                            <!-- Benefits Item End -->
-
-                            <!-- Benefits Item Start -->
+                          
                             <div class="benefits-item wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="icon-box">
                                     <img src="images/icon-benefits-item-2.svg" alt="">
                                 </div>
                                 <div class="benefits-item-content">
                                     <h3>Educación Limpia y Natural</h3>
-                                    <p>Nuestros programas son exactamente lo que deben ser: puros, educativos y libres de comercialización.</p>
+                                    <p>Nuestros programas son precisamente lo que deben ser: auténticos, didácticos y exentos de cualquier tipo de venta.</p>
                                 </div>
                             </div>
-                            <!-- Benefits Item End -->
                         </div>
-                        <!-- Benefits Item Box End -->
-
-                        <!-- Benefits Button Start -->
+                       
                         <div class="benefits-btn wow fadeInUp" data-wow-delay="0.6s">
                             <a href="contact.html" class="btn-default">¡Contáctanos Hoy!</a>
                         </div>
-                        <!-- Benefits Button End -->
                     </div>
-                    <!-- Our Benefits Content End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Our Benefits Section End -->
-
-   <!-- Footer Start -->
+  
     <footer class="main-footer dark-section">
 		<div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- Main Footer Start -->
                     <div class="main-footer-box">
-                        <!-- Footer About Start -->
                         <div class="footer-about">
-                            <!-- Footer Logo Start -->
                             <div class="footer-logo">
                                 <img src="images/logo.png" alt="Logo">
                             </div>
-                            <!-- Footer Logo End -->
-                            
-                            <!-- About Footer Content Start -->
+                           
                             <div class="about-footer-content">
-                                <p>Somos un santuario familiar y sostenible de rinocerontes comprometido con ofrecer conservación 100% auténtica y libre de explotación comercial.</p>
+                                <p>Somos un refugio familiar y sustentable para rinocerontes, dedicados a brindar una preservación auténtica y libre de explotación económica..</p>
                             </div>
-                            <!-- About Footer Content End -->
-                            
-                            <!-- Footer Contact List Start -->
+                        
                             <div class="footer-contact-list">
-                                <!-- Footer Contact Item Start -->
                                 <div class="footer-contact-item">
                                     <div class="footer-contact-item-header">
                                         <img src="images/icon-phone-white.svg" alt="">
@@ -781,7 +668,7 @@
                             <div class="footer-links">
                                 <h3>Enlaces Rápidos</h3>
                                 <ul>
-                                    <li><a href="index.html">inicio</a></li>
+                                    <li><a href="/">inicio</a></li>
                                     <li><a href="about.html">acerca de nosotros</a></li>
                                     <li><a href="experiencias.html">experiencias</a></li>
                                     <li><a href="contact.html">contacto</a></li>
@@ -815,7 +702,7 @@
                                 <div class="footer-contact-item">
                                     <div class="footer-contact-item-header">
                                         <img src="images/icon-mail-accent.svg" alt="">
-                                        <p><a href="mailto:info@cosmocores.xyz">info@cosmocores.xyz</a></p>
+                                        <p><a href="mailto:info@childquestcare.com">info@childquestcare.com</a></p>
                                     </div>
                                 </div>
                             </div>
