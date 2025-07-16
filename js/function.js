@@ -4,12 +4,10 @@
 	var $window = $(window); 
 	var $body = $('body'); 
 
-	/* Preloader Effect */
 	$window.on('load', function(){
 		$(".preloader").fadeOut(600);
 	});
 
-	/* Sticky Header */	
 	if($('.active-sticky-header').length){
 		$window.on('resize', function(){
 			setHeaderHeight();
@@ -28,7 +26,6 @@
 		});
 	}	
 	
-	/* Slick Menu JS */
 	$('#menu').slicknav({
 		label : '',
 		prependTo : '.responsive-menu'
@@ -41,7 +38,6 @@
 		});
 	}
 
-	/* testimonial Slider JS */
 	if ($('.testimonial-slider').length) {
 		const testimonial_slider = new Swiper('.testimonial-slider .swiper', {
 			slidesPerView : 1,
@@ -70,7 +66,6 @@
 		});
 	}
 
-	/* Skill Bar */
 	if ($('.skills-progress-bar').length) {
 		$('.skills-progress-bar').waypoint(function() {
 			$('.skillbar').each(function() {
@@ -83,17 +78,14 @@
 		});
 	}
 
-	/* Youtube Background Video JS */
 	if ($('#herovideo').length) {
 		var myPlayer = $("#herovideo").YTPlayer();
 	}
 
-	/* Init Counter */
 	if ($('.counter').length) {
 		$('.counter').counterUp({ delay: 6, time: 3000 });
 	}
 
-	/* Image Reveal Animation */
 	if ($('.reveal').length) {
         gsap.registerPlugin(ScrollTrigger);
         let revealContainers = document.querySelectorAll(".reveal");
@@ -121,7 +113,6 @@
         });
     }
 
-	/* Text Effect Animation */
 	if ($('.text-anime-style-1').length) {
 		let staggerAmount 	= 0.05,
 			translateXValue = 0,
@@ -166,7 +157,6 @@
 		let	animatedTextElements = document.querySelectorAll('.text-anime-style-3');
 		
 		 animatedTextElements.forEach((element) => {
-			//Reset if needed
 			if (element.animation) {
 				element.animation.progress(1).kill();
 				element.split.revert();
@@ -196,7 +186,6 @@
 		});		
 	}
 
-	/* Parallaxie js */
 	var $parallaxie = $('.parallaxie');
 	if($parallaxie.length && ($window.width() > 991))
 	{
@@ -208,7 +197,6 @@
 		}
 	}
 
-	/* Zoom Gallery screenshot */
 	$('.gallery-items').magnificPopup({
 		delegate: 'a',
 		type: 'image',
@@ -223,14 +211,13 @@
 		},
 		zoom: {
 			enabled: true,
-			duration: 300, // don't foget to change the duration also in CSS
+			duration: 300, 
 			opener: function(element) {
 			  return element.find('img');
 			}
 		}
 	});
 
-	/* Contact form validation */
 	var $contactform = $("#contactForm");
 	$contactform.validator({focus: false}).on("submit", function (event) {
 		if (!event.isDefaultPrevented()) {
@@ -240,7 +227,6 @@
 	});
 
 	function submitForm(){
-		/* Ajax call to submit form */
 		$.ajax({
 			type: "POST",
 			url: "form-process.php",
@@ -268,12 +254,9 @@
 		}
 		$("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
 	}
-	/* Contact form validation end */
-
-	/* Animated Wow Js */	
+		
 	new WOW().init();
 
-	/* Popup Video */
 	if ($('.popup-video').length) {
 		$('.popup-video').magnificPopup({
 			type: 'iframe',

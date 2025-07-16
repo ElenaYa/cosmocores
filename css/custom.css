@@ -1,51 +1,4 @@
-/* ----------------------------------------------------------------------------------------
-* Author        : Awaiken
-* Template Name : Milkzen - Dairy Farm & Milk HTML Template
-* File          : CSS File
-* Version       : 1.0
-* ---------------------------------------------------------------------------------------- */
-/* INDEX
-----------------------------------------------------------------------------------------
-01. Global Variables
-02. General css
-03. Header css
-04. Hero css
-05. Scrolling Ticker css
-06. About Us css
-07. Our Services css
-08. Why Choose Us css
-09. Intro Video css
-10. Our Quality css
-11. Product Benefits css
-12. Our Facts css
-13. Our Benefits css
-14. Our Products css
-15. Our Testimonials css
-16. Our Features css
-17. Our FAQs css
-18. Our Blogs css
-19. Footer css
-20. About Us Page css
-21. Services Page css
-22. Service Single css
-23. Blog Archive css
-24. Blog Single css
-25. Our Products css
-26. Product Single css
-27. Team Page css
-28. Team Single css
-29. Testimonials Page css
-30. Image Gallery css
-31. Video Gallery css
-32. FAQs Page css
-33. Contact Us Page css
-34. 404 Error Page css
-35. Responsive css
--------------------------------------------------------------------------------------- */
 
-/************************************/
-/*** 	 01. Global Variables	  ***/
-/************************************/
 
 :root{
 	--primary-color				: #39251A;
@@ -59,9 +12,7 @@
 	--default-font				: "Anek Bangla", sans-serif;
 }
 
-/************************************/
-/*** 	   02. General css		  ***/
-/************************************/
+
 
 body{
 	position: relative;
@@ -464,9 +415,7 @@ body{
 	font-size: 14px;
 }
 
-/************************************/
-/**** 	   03. Header css		 ****/
-/************************************/
+
 
 header.main-header{
 	position: absolute;
@@ -728,9 +677,7 @@ header.main-header .header-sticky.active{
 	color: var(--white-color);
 }
 
-/************************************/
-/***         04. Hero css	      ***/
-/************************************/
+
 
 .hero{
 	position: relative;
@@ -992,9 +939,7 @@ header.main-header .header-sticky.active{
 	border-radius: 20px;
 }
 
-/************************************/
-/***   05. Scrolling Ticker css   ***/
-/************************************/
+
 
 .our-scrolling-ticker{
 	position: relative;
@@ -1046,9 +991,7 @@ header.main-header .header-sticky.active{
 	}
 }
 
-/************************************/
-/***   	   06. About Us css       ***/
-/************************************/
+
 
 .about-us{
 	padding: 100px 0;
@@ -1286,9 +1229,7 @@ header.main-header .header-sticky.active{
 	margin-top: 40px;
 }
 
-/************************************/
-/***   	 07. Our Services css     ***/
-/************************************/
+
 
 .our-services{
 	background-image: url('../images/section-bg-1.png');
@@ -1432,9 +1373,7 @@ header.main-header .header-sticky.active{
 	color: var(--primary-color);
 }
 
-/************************************/
-/***   	08. Why Choose Us css     ***/
-/************************************/
+
 
 .why-choose-us{
 	padding: 100px 0 0;
@@ -1519,9 +1458,7 @@ header.main-header .header-sticky.active{
 	margin-bottom: -130px;
 }
 
-/************************************/
-/***   	  09. Intro Video css     ***/
-/************************************/
+
 
 .intro-video{
 	position: relative;
@@ -1638,9 +1575,6 @@ header.main-header .header-sticky.active{
 	margin: 0;
 }
 
-/************************************/
-/*** 	  10. Our Quality css 	  ***/
-/************************************/
 
 .our-quality{
 	padding: 100px 0;
@@ -1727,9 +1661,6 @@ header.main-header .header-sticky.active{
 	border-radius: 0 20px 20px 20px;
 }
 
-/************************************/
-/***   11. Product Benefits css   ***/
-/************************************/
 
 .product-benefits{
 	background: var(--primary-color);
@@ -1802,9 +1733,6 @@ header.main-header .header-sticky.active{
 	margin: 0;
 }
 
-/************************************/
-/*** 	  12. Our Facts css 	  ***/
-/************************************/
 
 .our-facts{
 	padding: 100px 0;
@@ -2176,9 +2104,7 @@ header.main-header .header-sticky.active{
 	margin-top: 40px;
 }
 
-/************************************/
-/*** 	  14. Our Products css 	  ***/
-/************************************/
+
 
 .our-product{
 	padding: 100px 0;
@@ -2298,9 +2224,7 @@ header.main-header .header-sticky.active{
 	margin: 0;
 }
 
-/************************************/
-/***   15. Our Testimonials css   ***/
-/************************************/
+
 
 .our-testimonials{
 	position: relative;
@@ -2472,9 +2396,6 @@ header.main-header .header-sticky.active{
 	margin: 0;
 }
 
-/************************************/
-/*** 	  16. Our Features css 	  ***/
-/************************************/
 
 .our-feature{
 	padding: 100px 0;
@@ -2630,9 +2551,7 @@ header.main-header .header-sticky.active{
 	object-fit: cover;
 }
 
-/************************************/
-/*** 	   17. Our FAQs css 	  ***/
-/************************************/
+
 
 .our-faqs{
 	position: relative;
@@ -2745,9 +2664,7 @@ header.main-header .header-sticky.active{
 	margin: 0;
 }
 
-/************************************/
-/*** 	   18. Our Blogs css 	  ***/
-/************************************/
+
 
 .our-blog{
 	padding: 100px 0 70px;
@@ -2799,9 +2716,7 @@ header.main-header .header-sticky.active{
     color: inherit;
 }
 
-/************************************/
-/*** 	    19. Footer css 	      ***/
-/************************************/
+
 
 .main-footer{
     padding: 100px 0 0;
@@ -3053,9 +2968,7 @@ header.main-header .header-sticky.active{
 	color: inherit
 }
 
-/************************************/
-/*** 	 20. About Us Page css	  ***/
-/************************************/
+
 
 .page-header{
 	background: var(--primary-color);
@@ -3505,9 +3418,6 @@ header.main-header .header-sticky.active{
 	margin: 0;
 }
 
-/************************************/
-/*** 	 21. Services Page css	  ***/
-/************************************/
 
 .page-services{
 	padding: 100px 0 70px;
@@ -3520,9 +3430,7 @@ header.main-header .header-sticky.active{
 	margin-bottom: 30px;
 }
 
-/************************************/
-/*** 	 22. Service Single css	  ***/
-/************************************/
+
 
 .page-service-single{
 	padding: 100px 0;
@@ -4066,9 +3974,6 @@ header.main-header .header-sticky.active{
 	width: calc(74% - 10px);
 }
 
-/************************************/
-/*** 	 23. Blog Archive css	  ***/
-/************************************/
 
 .page-blog{
 	padding: 100px 0;
@@ -4107,9 +4012,7 @@ header.main-header .header-sticky.active{
     background: var(--accent-color);
 }
 
-/************************************/
-/*** 	 24. Blog Single css	  ***/
-/************************************/
+
 
 .page-single-post{
 	padding: 100px 0;
@@ -4355,9 +4258,6 @@ header.main-header .header-sticky.active{
     color: inherit;
 }
 
-/************************************/
-/*** 	 25. Our Products css	  ***/
-/************************************/
 
 .page-product{
 	padding: 100px 0;
@@ -4367,9 +4267,6 @@ header.main-header .header-sticky.active{
 	margin-top: 60px;
 }
 
-/************************************/
-/*** 	 26. Product Single css	  ***/
-/************************************/
 
 .page-product-single{
 	padding: 100px 0;
@@ -4704,17 +4601,12 @@ header.main-header .header-sticky.active{
 	text-align: center;
 }
 
-/************************************/
-/*** 	   27. Team Page css	  ***/
-/************************************/
+
 
 .page-team{
 	padding: 100px 0 70px;
 }
 
-/************************************/
-/*** 	 28. Team Single css	  ***/
-/************************************/
 
 .page-team-single{
 	padding: 100px 0;
@@ -4941,9 +4833,7 @@ header.main-header .header-sticky.active{
 	background: var(--primary-color);
 }
 
-/************************************/
-/***  29. Testimonials Page css	  ***/
-/************************************/
+
 
 .page-testimonials{
 	padding: 100px 0 70px;
@@ -4957,9 +4847,7 @@ header.main-header .header-sticky.active{
 	padding: 40px;
 }
 
-/************************************/
-/*** 	 30. Image Gallery css	  ***/
-/************************************/
+
 
 .page-gallery{
 	padding: 100px 0 70px;
@@ -4986,9 +4874,6 @@ header.main-header .header-sticky.active{
 	border-radius: 20px;
 }
 
-/************************************/
-/*** 	 31. Video Gallery css	  ***/
-/************************************/
 
 .page-video-gallery{
 	padding: 100px 0 70px;
@@ -5066,9 +4951,7 @@ header.main-header .header-sticky.active{
 	border-radius: 20px;
 }
 
-/************************************/
-/*** 	  32. FAQs Page css		  ***/
-/************************************/
+
 
 .page-faqs{
 	padding: 100px 0;
@@ -5082,9 +4965,7 @@ header.main-header .header-sticky.active{
     margin-bottom: 0px;
 }
 
-/************************************/
-/*** 	33. Contact Us Page css	  ***/
-/************************************/
+
 
 .page-contact-us{
 	padding: 100px 0;
@@ -5282,9 +5163,7 @@ header.main-header .header-sticky.active{
 	filter: grayscale(0);
 }
 
-/************************************/
-/*** 	34. 404 Error Page css	  ***/
-/************************************/
+
 
 .error-page{
 	padding: 100px 0;
@@ -5308,9 +5187,7 @@ header.main-header .header-sticky.active{
 	margin-bottom: 15px;
 }
 
-/************************************/
-/***      35. Responsive css      ***/
-/************************************/
+
 
 @media only screen and (max-width: 1024px){
 

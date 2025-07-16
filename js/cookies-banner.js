@@ -1,4 +1,3 @@
-// Cookie Banner Handler
 document.addEventListener('DOMContentLoaded', function() {
     const COOKIES_ACCEPTED_KEY = 'cookies_accepted';
     const COOKIES_PREFERENCES_KEY = 'cookies_preferences';
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.body.appendChild(banner);
         
-        // Show banner with animation after a short delay
         setTimeout(() => {
             banner.classList.add('show');
         }, 500);
@@ -42,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.manageCookies = function() {
-        // Redirect to cookies preferences page
         window.location.href = '/cookies.html';
     };
 
@@ -56,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Check if user has already accepted cookies
     const cookiesAccepted = localStorage.getItem(COOKIES_ACCEPTED_KEY);
     if (!cookiesAccepted) {
         createCookiesBanner();
